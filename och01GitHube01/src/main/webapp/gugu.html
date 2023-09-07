@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>보고싶은 구구단은?(GuGu)</h1> <!-- (액션명) -->
+	<form action="GuGu"> <!-- method따로 안적으면 기본이 get방식 -->
+		<select name="num">
+			<option value="2">2단</option>
+			<option value="3">3단</option>
+			<option value="4">4단</option>
+			<option value="5">5단</option>
+			<option value="6">6단</option>
+			<option value="7">7단</option>
+			<option value="8">8단</option>
+			<option value="9">9단</option>
+		</select><p>
+		<input type="submit" value="선택완료">
+		<!-- xml로 서블릿 만들고 실행 후 선택완료 누르면
+		http://localhost:8181/och01/GuGu?num=2 주소 뜸
+		8.17 11:15
+		서버명?:포트번호/패키지명/xml에서 정한 url명?(?는 get방식에서 ?를 기준으로 파라미터값 나옴 -->
+	</form>
+</body>
+</html>

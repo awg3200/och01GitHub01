@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function chk() {
+		/* 입력은 HTML로 받고 검증은 자바스크립트, 입력받은 데이터 처리는 서블릿 */
+		
+		/* num은 필수고 loc는 필수가 아니라 가정
+		입력을 했는가와 숫자인지 아닌지를 검증하기 위한 함수*/
+			if(!frm.num.value){
+				/* 원래 form은 name 안줘도 되는데 위에 자스로 form호출하기 위해 name넣어줌
+				dom구조이니 .찍으면서 타고타고 해서 내가 원하는 요소로 접근할 수 있음*/
+				alert("숫자 입력 ?");
+				frm.num.focus();
+				return false;
+			}
+			if (isNaN(frm.num.value)) { //isNaN은 숫자로 입력해야함 문자여도 숫자로 변환해서 검증
+				alert("숫자가 아님 헐?");
+				frm.num.focus();
+				frm.num.value = "";	//입력된 글자 지우고 초기화 시킴
+				return false;
+			}
+			return true;
+	}
+	/*실제로 숫자에 123입력후 확인 누르면 true값 반환돼서 action이 실행이 됨 
+	http://localhost:8181/och01/Add3?num=123&loc=
+	주소에 위처럼 url뜸
+	och01에서 Add3 찾았는데 없어서 404뜸
+	따라서 JSP로 Add3 만들어줌 
+	Add3이라는 서버를 찾는데 서버나 servlet이나 같은 것 서브릿이 서브임
+	서버 새로 연결한거라 이제 웹브라우저에서 새로고침으로 바뀐내용 볼 수 없음 재실행 해줘야함
+	사용자가 값 제대로 입력하면 chk가 true반환하고 그럼 action에 의해
+	리퀘스트 객체 내부에 num과 loc파라미터값 담아서 서버로 이동
+	form의 기본은 get방식이므로 Add3서버에서 doGet이 실행됨*/
+</script>
+</head>
+<body>
+<!-- 보통 클라이언트 단 이름은 소문자로 자바는 대문자로 만듦 -->
+	<h1>숫자를 입력하세요</h1>
+	<form action="Add3" name="frm" method="get" onsubmit="return chk()">  
+	<!-- 폼은 안에 인풋태그들 묶어주는 역할 -->
+	<!-- form의 메소드 방식 따로 안적으면 기본은 get방식 따라서 jsp에서 doGet이 대응해줌  -->
+	<!-- 원래 form은 name 안줘도 되는데 위에 자스로 form호출하기 위해 name넣어줌 -->
+		<!-- 아래의 파라미터값 가지고 action을 통해 서버단으로 감 -->
+		<!--onsubmit는 action으로 넘기기 전에 ""안의 함수로 체크해줘 만약 필수 파라미터 입력x됐으면 입력하라고 알려주는 등 체크하라고 
+		true만나야 action으로 이동
+		따라서 ""는 자바스크립트로 적음-->
+		숫자(필수) : <input type="text" name="num"><p> <!-- num과 loc은 파라미터 -->
+		위치(옵션) : <input type="text" name="loc"><p>
+			  <input type="submit" value="확인"> 
+			  <!-- 서브밋하면 맥션으로가고 액션으로 가기전에 chk로 체크하는데 chk는 자스로 조건줌 -->
+	<!-- body에선 그림을 그리고
+	자스에선 검증을 하고 
+	jsp는 사용자에게 보여줄 것을 연산함 -->
+	</form>
+</body>
+</html>
