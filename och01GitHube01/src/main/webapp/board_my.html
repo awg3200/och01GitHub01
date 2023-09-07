@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+//내 풀이
+	function chk(){
+		if(!frm.td.title)
+	}
+</script>
+</head>
+<body>
+	<h1>게시판(Board/chk())</h1> <!-- (서버명/자바스크립트함수명) -->
+	<!-- 아래가 틀린 이유 td셀에 input태그 넣어서 텍스트 입력 받을 수 있게 해야 하는데
+	걍 td만 넣어서 칸만만들고 입력은 할수없게 함 -->
+	<form action="Board" name="frm" onsubmit="return chk()">
+		<table border="1">
+			<tr>
+				<td>제목</td>
+				<td name="title"></td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td name="writer"></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td><textarea rows="20" cols="50" name="content"></textarea> </td>
+				
+			</tr>
+			<tr>
+				<td colspan="2"> <input type="submit" name="end" value="완료"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
